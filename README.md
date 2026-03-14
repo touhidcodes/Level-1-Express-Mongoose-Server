@@ -4,7 +4,8 @@ A robust, beginner-friendly starter template built with **Express**, **Mongoose*
 
 ## 📖 Documentation
 - [How to build from scratch](./docs/README.md)
-- [Module Development Workflow](./docs/WORKFLOW.md)
+- [Module Development Workflow](./docs/MODULE_WORKFLOW.md)
+- [Google Gemini AI Integration](./docs/GEMINI_INTEGRATION.md)
 
 ## 🛠️ Features
 - **TypeScript**: Type safety across the whole app.
