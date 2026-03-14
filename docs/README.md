@@ -22,13 +22,13 @@ We need several packages for building our server, handling types, and security.
 
 ### Core Dependencies
 ```bash
-npm install express mongoose cors dotenv bcrypt
+npm install express mongoose cors dotenv bcrypt jsonwebtoken
 ```
 
 ### Development Dependencies
 These are only needed during development (for TypeScript support and auto-reloading).
 ```bash
-npm install -D typescript ts-node-dev @types/express @types/node @types/cors @types/bcrypt
+npm install -D typescript ts-node-dev @types/express @types/node @types/cors @types/bcrypt @types/jsonwebtoken
 ```
 
 ## Step 3: Configure TypeScript
@@ -76,7 +76,7 @@ Before building our data models, we need the "skeleton" of our server.
 Now, we create the specialized folders that make up our MVC pattern.
 
 ### 1. `src/config/`
-**Use Case:** Centralizes all environment variables (API keys, DB URLs, Port numbers).  
+**Use Case:** Centralizes all environment variables (API keys, DB URLs, Port numbers, JWT Secrets).  
 **Step:** Create `index.ts` here to export your `.env` variables safely.
 
 ### 2. `src/models/`

@@ -9,7 +9,7 @@ A robust, beginner-friendly starter template built with **Express**, **Mongoose*
 ## 🛠️ Features
 - **TypeScript**: Type safety across the whole app.
 - **MVC Architecture**: Clean separation of concerns.
-- **Authentication**: Secure registration and login with `bcrypt`.
+- **Authentication**: Secure registration and login with `bcrypt` & `JWT`.
 - **Mongoose Hooks**: Pre-save hashing and Post-save password stripping examples.
 - **Centralized Routing**: Easy to scale with new modules.
 
@@ -26,6 +26,8 @@ Create a `.env` file in the root:
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 BCRYPT_SALT_ROUNDS=12
+JWT_SECRET=your_secret_key
+JWT_EXPIRES_IN=7d
 ```
 
 ### 3. Run the Server

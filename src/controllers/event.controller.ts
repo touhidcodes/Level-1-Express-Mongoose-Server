@@ -4,8 +4,7 @@ import { Event } from '../models/event.model';
 // Create event
  const createEvent = async (req: Request, res: Response) => {
   try {
-    const event = new Event(req.body);
-    const savedEvent = await event.save();
+    const savedEvent = await Event.create(req.body);
     res.status(201).json({
       success: true,
       message: 'Event created successfully',

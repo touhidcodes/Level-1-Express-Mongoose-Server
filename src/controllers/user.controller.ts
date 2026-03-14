@@ -1,12 +1,33 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
+import jwt, { Secret } from 'jsonwebtoken';
+import config from '../config';
 import { User } from '../models/user.model';
 
+// Register user
 const register = async (req: Request, res: Response) => {
   try {
-    const user = new User(req.body);
-    const savedUser = await user.save();
+    const { email } = req.body;
     
+    // Check if user already exists
+    const isUserExist = await User.findOne({ email });
+
+    if (isUserExist) {
+      return res.status(400).json({
+        success: false,
+        message: 'User already exists!',
+      });
+    }
+
+    const savedUser = await User.create(req.body);
+    
+    // Generate token
+    const token = jwt.sign(
+      { email: savedUser.email, role: savedUser.role },
+      config.jwt_secret as Secret,
+      { expiresIn: config.jwt_expires_in as any }
+    );
+
     // Omit password from response
     const userResponse = savedUser.toObject();
     delete userResponse.password;
@@ -15,6 +36,7 @@ const register = async (req: Request, res: Response) => {
       success: true,
       message: 'User registered successfully',
       data: userResponse,
+      token,
     });
   } catch (err: any) {
     res.status(500).json({
@@ -25,12 +47,13 @@ const register = async (req: Request, res: Response) => {
   }
 };
 
+// Login user
 const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     
     // Check if user exists
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(401).json({
         success: false,
@@ -47,6 +70,13 @@ const login = async (req: Request, res: Response) => {
       });
     }
 
+    // Generate token
+    const token = jwt.sign(
+      { email: user.email, role: user.role },
+      config.jwt_secret as Secret,
+      { expiresIn: config.jwt_expires_in as any }
+    );
+
     // Omit password from response
     const userResponse = user.toObject();
     delete userResponse.password;
@@ -54,7 +84,7 @@ const login = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: 'User logged in successfully',
-      // Real world scenario would generate & include JWT here
+      token,
       data: userResponse, 
     });
 
@@ -67,6 +97,7 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
+// Get all users
 const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.find().select('-password');
