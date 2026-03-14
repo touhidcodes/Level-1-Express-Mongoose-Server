@@ -22,7 +22,7 @@ We need several packages for building our server, handling types, and security.
 
 ### Core Dependencies
 ```bash
-npm install express mongoose cors dotenv bcrypt jsonwebtoken
+npm install express mongoose cors dotenv bcrypt jsonwebtoken @google/generative-ai
 ```
 
 ### Development Dependencies

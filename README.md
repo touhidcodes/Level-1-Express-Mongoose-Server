@@ -10,6 +10,7 @@ A robust, beginner-friendly starter template built with **Express**, **Mongoose*
 - **TypeScript**: Type safety across the whole app.
 - **MVC Architecture**: Clean separation of concerns.
 - **Authentication**: Secure registration and login with `bcrypt` & `JWT`.
+- **AI Integration**: Automatic event description generation using **Google Gemini**.
 - **Mongoose Hooks**: Pre-save hashing and Post-save password stripping examples.
 - **Centralized Routing**: Easy to scale with new modules.
 
@@ -28,6 +29,7 @@ MONGODB_URI=your_mongodb_connection_string
 BCRYPT_SALT_ROUNDS=12
 JWT_SECRET=your_secret_key
 JWT_EXPIRES_IN=7d
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ### 3. Run the Server

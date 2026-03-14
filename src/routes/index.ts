@@ -1,4 +1,5 @@
 import express from 'express';
+import { AiRoutes } from './ai.route';
 import { EventRoutes } from './event.route';
 import { UserRoutes } from './user.route';
 
@@ -12,6 +13,10 @@ const moduleRoutes = [
   {
     path: '/users',
     route: UserRoutes,
+  },
+  {
+    path: '/ai',
+    route: AiRoutes,
   },
 ];
 
