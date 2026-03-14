@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Event } from '../models/event.model';
 
-export const createEvent = async (req: Request, res: Response) => {
+ const createEvent = async (req: Request, res: Response) => {
   try {
     const event = new Event(req.body);
     const savedEvent = await event.save();
@@ -19,7 +19,7 @@ export const createEvent = async (req: Request, res: Response) => {
   }
 };
 
-export const getEvents = async (req: Request, res: Response) => {
+ const getEvents = async (req: Request, res: Response) => {
   try {
     const events = await Event.find();
     res.status(200).json({
@@ -36,7 +36,7 @@ export const getEvents = async (req: Request, res: Response) => {
   }
 };
 
-export const getEventById = async (req: Request, res: Response) => {
+ const getEventById = async (req: Request, res: Response) => {
   try {
     const event = await Event.findById(req.params.id);
     if (!event) {
@@ -59,7 +59,7 @@ export const getEventById = async (req: Request, res: Response) => {
   }
 };
 
-export const updateEvent = async (req: Request, res: Response) => {
+ const updateEvent = async (req: Request, res: Response) => {
   try {
     const updatedEvent = await Event.findByIdAndUpdate(
       req.params.id,
@@ -86,7 +86,7 @@ export const updateEvent = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteEvent = async (req: Request, res: Response) => {
+ const deleteEvent = async (req: Request, res: Response) => {
   try {
     const deletedEvent = await Event.findByIdAndDelete(req.params.id);
     if (!deletedEvent) {
@@ -108,3 +108,12 @@ export const deleteEvent = async (req: Request, res: Response) => {
     });
   }
 };
+
+
+export const eventControllers = {
+    createEvent,
+    getEvents,
+    getEventById,
+    updateEvent,
+    deleteEvent,
+}

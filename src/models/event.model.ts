@@ -1,12 +1,5 @@
 import { Schema, model } from 'mongoose';
-
-export interface IEvent {
-  title: string;
-  description: string;
-  date: Date;
-  location: string;
-  organizer: string;
-}
+import { IEvent } from '../types/event.interface';
 
 const eventSchema = new Schema<IEvent>({
   title: { type: String, required: true },
