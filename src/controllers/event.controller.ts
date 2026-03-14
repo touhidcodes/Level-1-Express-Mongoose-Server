@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Event } from '../models/event.model';
 
+// Create event
  const createEvent = async (req: Request, res: Response) => {
   try {
     const event = new Event(req.body);
@@ -19,6 +20,7 @@ import { Event } from '../models/event.model';
   }
 };
 
+// Get all events
  const getEvents = async (req: Request, res: Response) => {
   try {
     const events = await Event.find();
@@ -36,6 +38,7 @@ import { Event } from '../models/event.model';
   }
 };
 
+// Get single event
  const getEventById = async (req: Request, res: Response) => {
   try {
     const event = await Event.findById(req.params.id);
@@ -59,6 +62,7 @@ import { Event } from '../models/event.model';
   }
 };
 
+// Update event
  const updateEvent = async (req: Request, res: Response) => {
   try {
     const updatedEvent = await Event.findByIdAndUpdate(
@@ -86,6 +90,7 @@ import { Event } from '../models/event.model';
   }
 };
 
+// Delete event
  const deleteEvent = async (req: Request, res: Response) => {
   try {
     const deletedEvent = await Event.findByIdAndDelete(req.params.id);
@@ -108,7 +113,6 @@ import { Event } from '../models/event.model';
     });
   }
 };
-
 
 export const eventControllers = {
     createEvent,

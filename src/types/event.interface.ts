@@ -4,4 +4,5 @@ export interface IEvent {
   date: Date;
   location: string;
   organizer: string;
+  image?: string
 }

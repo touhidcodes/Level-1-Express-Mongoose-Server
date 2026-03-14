@@ -1,4 +1,4 @@
-# 🏗️ Module Development Workflow
+# Module Development Workflow
 
 Follow this workflow every time you want to add a new feature (e.g., "Blog Posts") to your server.
 
